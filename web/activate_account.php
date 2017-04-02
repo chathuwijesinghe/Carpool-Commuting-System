@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             /* create an entry in user table */
             $sql = "INSERT INTO user (username, password, email) VALUES ('$username', '$password', '$email'); ";
             if (mysqli_query($conn, $sql)) {
+                // redirect to home page
                 header("Location: home.php");
                 die();
             } else {

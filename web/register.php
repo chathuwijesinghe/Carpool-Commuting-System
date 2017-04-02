@@ -140,11 +140,10 @@ VALUES ('$username', '$password', '$email', '$activationCode')";
            autofocus="autofocus"/>
     <span><?php echo $username_error; ?></span><br/>
     <label>Password :</label>
-    <input type="password" name="password" value="<?php echo htmlspecialchars($password); ?>"/>
+    <input type="password" name="password"/>
     <span><?php echo $password_error; ?></span><br/>
     <label>Repeat password :</label>
-    <input type="password" name="re_password"
-           value="<?php echo htmlspecialchars($re_password); ?>"/>
+    <input type="password" name="re_password"/>
     <span><?php echo $re_password_error; ?></span><br/>
     <label>Email :</label>
     <input type="email" name="email"
