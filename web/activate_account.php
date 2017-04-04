@@ -6,6 +6,8 @@ session_start();
 $username = $_SESSION["username"];
 $email = $_SESSION["email"];
 
+$internal_error = $activation_code = $activation_code_error = "";
+
 $activation_code = $activation_code_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

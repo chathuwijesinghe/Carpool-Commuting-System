@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // validate the username
     $username = $_POST["username"];
     if (empty($username)) {
-        $username_error = "Username can't be empty.";
+        $username_error = "Please enter a value.";
         $execute = false;
     } else if (strlen($username) < 4) {
-        $username_error = "Username should contain at least 4 chars.";
+        $username_error = "Username must be 4 characters or more.";
         $execute = false;
     } else {
         $_SESSION["username"] = $username;
@@ -25,33 +25,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // validate the password
     $password = $_POST["password"];
     if (empty($password)) {
-        $password_error = "Password can't be empty.";
+        $password_error = "Please enter a value.";
         $execute = false;
     } else if (strlen($password) < 4) {
-        $password_error = "Password should contain at least 4 chars.";
+        $password_error = "Password must be 4 characters or more.";
         $execute = false;
     }
 
     // validate repeated password
     $re_password = $_POST["re_password"];
     if (empty($re_password)) {
-        $re_password_error = "Repeated password can't be empty.";
+        $re_password_error = "Please enter a value.";
         $execute = false;
     } else if (strlen($re_password) < 4) {
-        $re_password_error = "Repeated password should contain at least 4 chars.";
+        $re_password_error = "Repeated password must be 4 characters or more.";
         $execute = false;
     } else if (strcmp($re_password, $password) !== 0) {
-        $re_password_error = "Password should match with the repeated password.";
+        $re_password_error = "Repeated password should match with the password.";
         $execute = false;
     }
 
     // validate the email
     $email = $_POST["email"];
     if (empty($email)) {
-        $email_error = "Email can't be empty.";
+        $email_error = "Please enter a value.";
         $execute = false;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $email_error = "Email you entered is invalid.";
+        $email_error = "Please enter a valid email address.";
         $execute = false;
     } else {
         $_SESSION["email"] = $email;
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT * FROM user WHERE username = '$username'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            $username_error = "Username already exists. Please choose another.";
+            $username_error = "Someone's already using that username. If that’s you, enter your Email and password to sign in.";
             $execute = false;
         }
 
@@ -149,7 +149,7 @@ VALUES ('$username', '$password', '$email', '$activationCode')";
     <input type="email" name="email"
            value="<?php echo htmlspecialchars($email); ?>"/>
     <span><?php echo $email_error; ?></span><br/>
-    <input type="submit" value=" Submit "/>
+    <input type="submit" value=" Register "/>
 </form>
 </body>
 </html>

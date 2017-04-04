@@ -9,6 +9,8 @@ require '../config/config.php';
 
 session_start();
 
+$internal_error = $login_error = $username = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
