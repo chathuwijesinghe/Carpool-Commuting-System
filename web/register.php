@@ -1,5 +1,5 @@
+<?php require_once('header.php'); ?>
 <?php
-
 require '../config/config.php';
 
 session_start();
@@ -122,34 +122,48 @@ VALUES ('$username', '$password', '$email', '$activationCode')";
 }
 ?>
 
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
-    <title>Create a member's account</title>
-</head>
-<body>
-<span><?php echo $internal_error; ?></span><br/>
-<!-- htmlspecialchars is used to protect against XSS attacks -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <!--<div class="g-recaptcha" data-sitekey="6Lce6hoUAAAAAOh37uDcc1MVtv6qY35GLF46FNJ2"></div>-->
-    <label>Username :</label>
-    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>"
-           autofocus="autofocus"/>
-    <span><?php echo $username_error; ?></span><br/>
-    <label>Password :</label>
-    <input type="password" name="password"/>
-    <span><?php echo $password_error; ?></span><br/>
-    <label>Repeat password :</label>
-    <input type="password" name="re_password"/>
-    <span><?php echo $re_password_error; ?></span><br/>
-    <label>Email :</label>
-    <input type="email" name="email"
-           value="<?php echo htmlspecialchars($email); ?>"/>
-    <span><?php echo $email_error; ?></span><br/>
-    <input type="submit" value=" Register "/>
-</form>
-</body>
-</html>
+    <main>
+        <section id="reg_body_sec">
+            <div class="container main_reg_container">
+                <div class="row reg_content_row ">
+
+                    <div class="col-md-6 col-md-push-3 form_top_wrp">
+                        <div class="reg_form_wrp">
+
+                            <div class="reg_header">
+                                <h6>Don't you have an account?</h6>
+                                <h2>Register As Member</h2>
+                            </div>
+                            <span><?php echo $internal_error; ?></span><br/>
+<!--                             htmlspecialchars is used to protect against XSS attacks -->
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                                <div class="input_txt_wrp"><input type="text" type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" autofocus="autofocus" placeholder="User Name"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                <span><?php echo $username_error; ?></span><br/>
+                                <div class="input_txt_wrp"><input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>"> <i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                <span><?php echo $email_error; ?></span><br/>
+                                <div class="input_txt_wrp"><input type="password" name="password" placeholder="Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
+                                <span><?php echo $password_error; ?></span><br/>
+                                <div class="input_txt_wrp"><input type="password" name="re_password" placeholder="Re-Enter the Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
+                                <span><?php echo $re_password_error; ?></span><br/>
+                                <div class="g-recaptcha" data-sitekey="6Lce6hoUAAAAAOh37uDcc1MVtv6qY35GLF46FNJ2"></div>
+                                <div class="input_wrp">
+                                    <input type="submit" class="btn log_form_submit" value="REGISTER NOW"/>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+    </main>
+
+
+
+<?php require_once('footer.php'); ?>
