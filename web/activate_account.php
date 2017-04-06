@@ -1,3 +1,4 @@
+<?php require_once('header.php'); ?>
 <?php
 
 require '../config/config.php';
@@ -38,22 +39,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $internal_error = "Error: " . $sql . " < br>" . mysqli_error($conn);
         }
     } else {
-        $activation_code_error = "Activation code is invalid . Please check the activation code you entered . ";
+        $activation_code_error = "* Activation code is invalid . Please check the activation code you entered . ";
     }
 }
 ?>
 
-<html>
-<body>
-<span><?php echo $internal_error; ?></span><br/>
-<p>An email with your activation code has been sent to <?php echo $email ?></p>
-<!-- htmlspecialchars is used to protect against XSS attacks -->
-<form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <label>Activation code:</label>
-    <input type="text" name="activation_code" value="<?php echo htmlspecialchars($activation_code); ?>"
-           autofocus="autofocus"/>
-    <span><?php echo $activation_code_error; ?></span><br/>
-    <input type="submit" value=" Submit "/>
-</form>
-</body>
-</html>
+    <main>
+        <section id="verification_sec">
+            <div class="container verify_container">
+                <div class="well col-sm-7 col-sm-push-3 verify_box">
+                    <div class="col-sm-8">
+                        <!--                <span>--><?php //echo $internal_error; ?><!--</span><br/>-->
+                        <p>An email with your activation code has been sent to:<br>
+                            <?php echo $email ?></p>
+                        <!-- htmlspecialchars is used to protect against XSS attacks -->
+                        <form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="clearfix">
+                                <div class="left_content">
+                                    <label>Activation code:</label>
+                                    <input type="text" name="activation_code" value="<?php echo htmlspecialchars($activation_code); ?>"
+                                           autofocus="autofocus"/>
+                                    <span  style="color:#ce4f43; font-size: 11px;"><?php echo $activation_code_error; ?></span><br/>
+                                </div>
+                                <div class="right_content">
+                                    <input type="submit" value=" Verify " class="verify_btn"/>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+
+                    </div>
+                    <div class="col-sm-4 img_wrp">
+                        <img class="img-responsive" src="../images/mail.png ">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+<?php require_once('footer.php'); ?>
