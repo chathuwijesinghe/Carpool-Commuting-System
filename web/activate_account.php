@@ -1,7 +1,7 @@
 <?php require_once('header.php'); ?>
 <?php
 
-require '../config/config.php';
+require_once '../config/config.php';
 
 session_start();
 $username = $_SESSION["username"];
@@ -57,9 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="clearfix">
                                 <div class="left_content">
                                     <label>Activation code:</label>
-                                    <input type="text" name="activation_code" value="<?php echo htmlspecialchars($activation_code); ?>"
+                                    <input type="text" name="activation_code"
+                                           value="<?php echo htmlspecialchars($activation_code); ?>"
                                            autofocus="autofocus"/>
-                                    <span  style="color:#ce4f43; font-size: 11px;"><?php echo $activation_code_error; ?></span><br/>
+                                    <span style="color:#ce4f43; font-size: 11px;"><?php echo $activation_code_error; ?></span><br/>
                                 </div>
                                 <div class="right_content">
                                     <input type="submit" value=" Verify " class="verify_btn"/>

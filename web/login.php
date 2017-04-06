@@ -6,7 +6,7 @@
  * Date: 4/2/17
  * Time: 8:14 AM
  */
-require '../config/config.php';
+require_once '../config/config.php';
 
 session_start();
 
@@ -49,8 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span><?php echo $internal_error; ?></span><br/>
                             <!-- htmlspecialchars is used to protect against XSS attacks -->
                             <form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                <div class="input_txt_wrp"><input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>"  autofocus="autofocus" placeholder="User Name"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                <div class="input_txt_wrp"><input type="password" name="password" placeholder="Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
+                                <div class="input_txt_wrp"><input type="text" name="username"
+                                                                  value="<?php echo htmlspecialchars($username); ?>"
+                                                                  autofocus="autofocus" placeholder="User Name"><i
+                                            class="fa fa-user" aria-hidden="true"></i></div>
+                                <div class="input_txt_wrp"><input type="password" name="password"
+                                                                  placeholder="Password"> <i class="fa fa-lock"
+                                                                                             aria-hidden="true"></i>
+                                </div>
                                 <span style="color: #611f27; font-size: 13px; font-family: Roboto-Regular;"><?php echo $login_error; ?></span><br/>
                                 <div class="input_wrp">
                                     <input type="submit" class="btn log_form_submit" value="Login to my account"/>
@@ -62,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <h6>Don't have an account?</h6>
                                 </div>
                                 <div class="input_wrp">
-                                    <a href="register.php"><input type="submit" class="btn reg_btn" value="Sign up for free!"/></a>
+                                    <a href="register.php"><input type="submit" class="btn reg_btn"
+                                                                  value="Sign up for free!"/></a>
                                 </div>
 
 
@@ -72,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                 </div>
-
 
 
             </div>

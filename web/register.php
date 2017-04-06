@@ -1,6 +1,6 @@
 <?php require_once('header.php'); ?>
 <?php
-require '../config/config.php';
+require_once '../config/config.php';
 
 session_start();
 $_SESSION["username"] = $_SESSION["email"] = "";
@@ -103,16 +103,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 VALUES ('$username', '$password', '$email', '$activationCode')";
         if (mysqli_query($conn, $sql)) {
             // send an email with the activation code
-            /*            $retval = mail("nishenkpeiris@gmail.com", "Activation Code", $activationCode);
-                        if ($retval == true) {
-                            echo "Message sent successfully...";
-                        } else {
-                            echo "Message could not be sent...";
-                        }*/
-
-            // redirect to account activation
-            header("Location: activate_account.php");
-            die();
+            $retval = mail($email, "Activation Code", "Your are warmly welcome " . $username . ".\nYour activation code is " . $activationCode);
+            if ($retval == true) {
+                // redirect to account activation
+                header("Location: activate_account.php");
+                die();
+            } else {
+                $internal_error = "Server encountered with a problem while trying to send the activation code through email. Please try again later.";
+            }
         } else {
             $internal_error = "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -135,16 +133,26 @@ VALUES ('$username', '$password', '$email', '$activationCode')";
                                 <h2>Register As Member</h2>
                             </div>
                             <span><?php echo $internal_error; ?></span><br/>
-<!--                             htmlspecialchars is used to protect against XSS attacks -->
+                            <!--                             htmlspecialchars is used to protect against XSS attacks -->
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-                                <div class="input_txt_wrp"><input type="text" type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" autofocus="autofocus" placeholder="User Name"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                <div class="input_txt_wrp"><input type="text" type="text" name="username"
+                                                                  value="<?php echo htmlspecialchars($username); ?>"
+                                                                  autofocus="autofocus" placeholder="User Name"><i
+                                            class="fa fa-user" aria-hidden="true"></i></div>
                                 <span><?php echo $username_error; ?></span><br/>
-                                <div class="input_txt_wrp"><input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>"> <i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                <div class="input_txt_wrp"><input type="email" name="email" placeholder="Email"
+                                                                  value="<?php echo htmlspecialchars($email); ?>"> <i
+                                            class="fa fa-envelope" aria-hidden="true"></i></div>
                                 <span><?php echo $email_error; ?></span><br/>
-                                <div class="input_txt_wrp"><input type="password" name="password" placeholder="Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
+                                <div class="input_txt_wrp"><input type="password" name="password"
+                                                                  placeholder="Password"> <i class="fa fa-lock"
+                                                                                             aria-hidden="true"></i>
+                                </div>
                                 <span><?php echo $password_error; ?></span><br/>
-                                <div class="input_txt_wrp"><input type="password" name="re_password" placeholder="Re-Enter the Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
+                                <div class="input_txt_wrp"><input type="password" name="re_password"
+                                                                  placeholder="Re-Enter the Password"> <i
+                                            class="fa fa-lock" aria-hidden="true"></i></div>
                                 <span><?php echo $re_password_error; ?></span><br/>
                                 <div class="g-recaptcha" data-sitekey="6Lce6hoUAAAAAOh37uDcc1MVtv6qY35GLF46FNJ2"></div>
                                 <div class="input_wrp">
@@ -159,11 +167,9 @@ VALUES ('$username', '$password', '$email', '$activationCode')";
                 </div>
 
 
-
             </div>
         </section>
     </main>
-
 
 
 <?php require_once('footer.php'); ?>
