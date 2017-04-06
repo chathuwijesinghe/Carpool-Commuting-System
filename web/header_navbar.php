@@ -26,7 +26,7 @@ $username = $_SESSION["username"];
                 <ul class="nav navbar-nav navbar-right links">
                     <!-- if the user is logged in -->
                     <?php if (isset($username)) {
-                        echo "<li><a href=\"post.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i> Offer a Ride</a></li>";
+                        echo "<li><a href=\"offer_ride.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i> Offer a Ride</a></li>";
                     } ?>
                     <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i> All Commuters</a></li>
                     <!-- if the user isn't logged in -->
