@@ -55,15 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span><?php echo $internal_error; ?></span><br/>
                             <!-- htmlspecialchars is used to protect against XSS attacks -->
                             <form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <div class="input_txt_wrp">
-                                    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>"  autofocus="autofocus" placeholder="User Name"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                <div class="input_txt_wrp">
-                                    <input type="password" name="password" placeholder="Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
-=======
-=======
->>>>>>> f6601b6551c42442a93c322e2422e6174ee356e0
                                 <div class="input_txt_wrp"><input type="text" name="username"
                                                                   value="<?php echo htmlspecialchars($username); ?>"
                                                                   autofocus="autofocus" placeholder="User Name"><i
@@ -72,10 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                   placeholder="Password"> <i class="fa fa-lock"
                                                                                              aria-hidden="true"></i>
                                 </div>
-<<<<<<< HEAD
->>>>>>> 33035c22e74369a46c60b496b5ef25b28e312240
-=======
->>>>>>> f6601b6551c42442a93c322e2422e6174ee356e0
                                 <span style="color: #611f27; font-size: 13px; font-family: Roboto-Regular;"><?php echo $login_error; ?></span><br/>
                                 <div class="input_wrp">
                                     <input type="submit" class="btn log_form_submit" value="Login to my account"/>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$username = $_SESSION["username"];
+?>
 
 <header>
 
@@ -11,7 +15,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div  class="logo clearfix">
+                <div class="logo clearfix">
                     <a> <img src="../images/logo.png" class="img-responsive"></a>
                     <span>CAR POOLING</span>
                 </div>
@@ -20,10 +24,16 @@
             <div class="collapse navbar-collapse" id="myNavbar">
 
                 <ul class="nav navbar-nav navbar-right links">
-                    <li><a href="#"><i class="fa fa-car" aria-hidden="true"></i> Offer a Ride</a></li>
+                    <!-- if the user is logged in -->
+                    <?php if (isset($username)) {
+                        echo "<li><a href=\"post.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i> Offer a Ride</a></li>";
+                    } ?>
                     <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i> All Commuters</a></li>
-                    <li><a href="login.php"><i class="fa fa-cog" aria-hidden="true"></i> Login </a></li>
-                    <li><a href="register.php"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
+                    <!-- if the user isn't logged in -->
+                    <?php if (!isset($username)) {
+                        echo "<li><a href=\"login.php\"><i class=\"fa fa-cog\" aria-hidden=\"true\"></i> Login </a></li>";
+                        echo "<li><a href=\"register.php\"><span class=\"glyphicon glyphicon-log-in\"></span> Register</a></li>";
+                    } ?>
                 </ul>
             </div>
         </div>
