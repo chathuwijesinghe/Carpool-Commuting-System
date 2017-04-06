@@ -74,12 +74,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <span><?php echo $internal_error; ?></span><br/>
 <!-- htmlspecialchars is used to protect against XSS attacks -->
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <label>From :</label>
-    <input type="text" name="from" value="<?php echo htmlspecialchars($from); ?>"
-           autofocus="autofocus"/>
+
+    <input type="text" placeholder="From" name="from" value="<?php echo htmlspecialchars($from); ?>
+           autofocus="autofocus" />
     <span><?php echo $from_error; ?></span><br/>
-    <label>To :</label>
-    <input type="text" name="to" value="<?php echo htmlspecialchars($to); ?>"/>
+
+    <input type="text" name="to" placeholder="To" value="<?php echo htmlspecialchars($to); ?>"/>
     <span><?php echo $to_error; ?></span><br/>
     <label>Start date :</label>
     <input type="date" name="start_date" min="<?php echo date('Y-m-d'); ?>"
