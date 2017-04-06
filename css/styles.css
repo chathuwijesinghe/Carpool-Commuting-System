@@ -18,6 +18,11 @@
     font-family: Roboto-Thin;
     src: url(../fonts/Roboto-Thin.ttf);
 }
+@font-face {
+    font-family: Cinzel-Regular;
+    src: url(../fonts/Cinzel-Regular.ttf);
+}
+
 
 /*--------------- common styles ----------------*/
 
@@ -47,7 +52,7 @@
     background:rgba(252, 252, 252, 0.3);
     padding-top: 50px;
     padding-bottom: 50px;
-    margin-top: 100px;
+    margin-top: 40px;
 }
 
 .reg_form_wrp{
@@ -190,10 +195,17 @@
 .main_login_container .form_top_wrp{
     background:rgba(252, 252, 252, 0.3);
     padding-top: 47px;
-    padding-bottom: 100px;
+    padding-bottom: 47px;
     margin-top: 100px;
 }
-
+.captcha_wrp{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.g-recaptcha {
+    transform:scale(1.15);
+    transform-origin:0 0;
+}
 .login_form_wrp{
     width: 300px;
     margin: 10px auto;
@@ -541,6 +553,171 @@
 
 }
 
+
+/*------------------ page header------------------*/
+.page_header{
+    border-radius: 0px;
+    font-family: Roboto-Regular;
+    margin-bottom: 0px;
+}
+.navbar-default{
+    border-color:  #545454;
+}
+.page_header .logo img{
+    float: left;
+    width: 30%;
+}
+.page_header .logo span{
+    float: left;
+    width: 70%;
+    font-family: Roboto-Regular;
+    font-size: 21px;
+    padding-top: 20px;
+    padding-left: 10px;
+    color: #54ca63;
+
+}
+.page_header .container-fluid{
+    background-color: #545454;
+    border-color: #545454;
+}
+.page_header .links li{
+    font-size: 16px;
+    padding-top: 10px;
+
+}
+
+.page_header .links li a{
+    color: white;
+}
+.page_header .links li a:hover{
+    color: #54ca63;
+}
+
+/*------------------ home page------------------*/
+.main_home_container{
+    background: url("../images/home-bg.png") no-repeat ;
+    /*background-size: cover;*/
+    min-height: 600px;
+    width: 100%;
+    /*background-position: inherit;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    position: fixed;
+}
+
+.find_a_ride_wrp{
+    background: rgba(103, 189, 89, 0.3);
+    padding: 30px;
+    position: absolute;
+    right: 0px;
+    top:100px;
+    left: 80px;
+    width: 350px;
+}
+.find_a_ride_wrp h3{
+    font-family:monospace;
+    color: #000000;
+    text-align: center;
+    font-size: 30px;
+}
+.find_a_ride_wrp .input_wrp{
+    background: #ffffff;
+    padding: 6px 12px;
+    /*margin-bottom: 10px;*/
+    margin-top: 7px;
+    border-radius: 3px;
+    position: relative;
+    width: 100%;
+}
+.find_a_ride_wrp .input_wrp i{
+    color:#54ca63;
+}
+.find_a_ride_wrp .input_wrp input{
+    width: 94%;
+    border: none;
+    font-family: Roboto-Regular;
+    color: #54ca63;
+}
+.find_a_ride_wrp .input_wrp input:focus{
+    outline: none;
+}
+.find_a_ride_wrp  .search_btn button{
+    width: 100%;
+    border-radius: 4px;
+    font-family: Roboto-Regular;
+    background-color: #9ad260;
+    color: #ffffff;
+    padding: 5px;
+    margin-top: 20px;
+    border: none;
+    float: right;
+}
+.main_home_container .quote{
+    position: absolute;
+    font-size: 35px;
+    font-family: Roboto-Light;
+    color: #2b542c;
+    top: 41px;
+}
+
+.offer_ride{
+    background: #f3f1f1;
+    width: 100%;
+    font-family: Roboto-Regular;
+}
+
+.offer_ride .left_img{
+    margin-top: 100px;
+    text-align: center;
+    padding-left: 60px;
+}
+.offer_ride .right_form .panel-heading{
+    font-family: Roboto-Regular;
+    font-size: 21px;
+    color: #636060;
+
+}
+
+.offer_ride .right_form {
+    margin-top: 50px;
+
+}
+.offer_ride .right_form label{
+    font-family: Roboto-Light;
+    font-size: 16px;
+}
+
+.offer_ride .input_wrp{
+   padding-bottom: 20px;
+}
+
+.offer_ride .input_wrp input{
+    background: #ffffff;
+    padding: 6px 12px;
+    /*margin-bottom: 10px;*/
+    margin-top: 7px;
+    border-radius: 3px;
+    /*position: relative;*/
+    width: 100%;
+}
+.offer_ride .day_wrp{
+    margin-left: 30px;
+    display: none;
+}
+.offer_ride .post_btn button{
+    width: 50%;
+    border-radius: 4px;
+    font-family: Roboto-Regular;
+    background-color: #9ad260;
+    color: #ffffff;
+    padding: 5px;
+    margin-top: 20px;
+    border: none;
+    float: right;
+
+}
 /*------------ Responsive ----------------*/
 
 @media (max-width: 1024px) {

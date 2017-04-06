@@ -146,7 +146,9 @@ VALUES ('$username', '$password', '$email', '$activationCode')";
                                 <span><?php echo $password_error; ?></span><br/>
                                 <div class="input_txt_wrp"><input type="password" name="re_password" placeholder="Re-Enter the Password"> <i class="fa fa-lock" aria-hidden="true"></i></div>
                                 <span><?php echo $re_password_error; ?></span><br/>
-                                <div class="g-recaptcha" data-sitekey="6Lce6hoUAAAAAOh37uDcc1MVtv6qY35GLF46FNJ2"></div>
+                                <div class="captcha_wrp">
+                                    <div class="g-recaptcha" data-sitekey="6Lce6hoUAAAAAOh37uDcc1MVtv6qY35GLF46FNJ2" ></div>
+                                </div>
                                 <div class="input_wrp">
                                     <input type="submit" class="btn log_form_submit" value="REGISTER NOW"/>
                                 </div>
