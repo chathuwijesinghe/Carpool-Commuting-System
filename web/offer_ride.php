@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <label>Frequency:</label><br>
                                 <span><?php echo $frequency_error; ?></span><br/>
-                                <input type="radio" name="frequency" value="recurring"/> Recurring<br/>
+                                <input type="radio" name="frequency" value="recurring" id="recurring" /> Recurring<br/>
                                 <div class="day_wrp">
                                     <input type="checkbox" name="monday" value="monday"> Monday<br>
                                     <input type="checkbox" name="tuesday" value="tuesday"> Tuesday<br>

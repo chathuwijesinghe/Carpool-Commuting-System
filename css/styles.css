@@ -602,18 +602,18 @@
     width: 100%;
     /*background-position: inherit;*/
     background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    position: fixed;
+    /*background-size: cover;*/
+    /*position: relative;*/
+    /*position: fixed;*/
 }
-
+.main_home_container .left_form .find_a_ride_wrp    {
+   margin: 60px auto;
+}
 .find_a_ride_wrp{
     background: rgba(103, 189, 89, 0.3);
     padding: 30px;
-    position: absolute;
     right: 0px;
-    top:100px;
-    left: 80px;
+    min-height: 400px;
     width: 350px;
 }
 .find_a_ride_wrp h3{
@@ -655,11 +655,13 @@
     float: right;
 }
 .main_home_container .quote{
-    position: absolute;
+    /*position: absolute;*/
     font-size: 35px;
     font-family: Roboto-Light;
     color: #2b542c;
-    top: 41px;
+    /*top: 41px;*/
+    padding-top: 50px;
+    padding-left: 20px;
 }
 
 .offer_ride{
@@ -717,6 +719,32 @@
     border: none;
     float: right;
 
+}
+
+.results_content{
+    width: 100%;
+    background-color: #eae6e6;
+    font-family: Roboto-Regular;
+}
+
+.results_content h3{
+    font-family: Roboto-Thin;
+    color: #131212;
+    font-weight: 700;
+    font-size: 30px;
+}
+.results_content .available_rides_panel{
+    width: 75%;
+}
+.results_content button{
+    float: right;
+    border: none;
+    background-color: #9ad260;;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px 7px;
+    width: 80px;
+    border-radius: 4px;
 }
 /*------------ Responsive ----------------*/
 
