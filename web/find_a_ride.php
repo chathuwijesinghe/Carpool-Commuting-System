@@ -10,6 +10,16 @@ require_once '../config/config.php';
 $internal_error = $from = $from_error = $to = $to_error = $start_date = $start_date_error = "";
 $execute = true;
 
+// using cookies, retrieve the last search details
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_COOKIE["from"])) {
+        $from = $_COOKIE["from"];
+    }
+    if (isset($_COOKIE["to"])) {
+        $to = $_COOKIE["to"];
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     /* validate all inputs */
     // validate the from location
@@ -35,6 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     /* if all inputs are valid, then */
     if ($execute) {
+        // set cookie to remember the last search
+        setcookie("from", $from, time() + (86400 * 30), "/"); // 86400 = 1 day
+        setcookie("to", $to, time() + (86400 * 30), "/"); // 86400 = 1 day
+
         $sql = "SELECT * FROM post";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {

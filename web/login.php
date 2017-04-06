@@ -1,4 +1,3 @@
-<?php require_once('header.php'); ?>
 <?php
 /**
  * Created by IntelliJ IDEA.
@@ -7,10 +6,16 @@
  * Time: 8:14 AM
  */
 require_once '../config/config.php';
-
-session_start();
+require_once 'header.php';
 
 $internal_error = $login_error = $username = "";
+
+// using cookies, retrieve the username
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_COOKIE["username"])) {
+        $username = $_COOKIE["username"];
+    }
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -21,7 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT username FROM user WHERE username = '$username' and password = '$password'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
+        // set the session
+        session_start();
         $_SESSION['username'] = $username;
+
+        // set cookie to remember username
+        setcookie("username", $username, time() + (86400 * 30), "/"); // 86400 = 1 day
 
         // redirect to home page
         header("Location: home.php");
@@ -30,22 +40,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login_error = "Username or password incorrect. Please try again.";
     }
 }
-
 ?>
 
     <main>
         <section id="login_body_sec">
             <div class="container main_login_container">
                 <div class="row login_content_row ">
-
                     <div class="col-md-4 col-md-push-4 form_top_wrp">
                         <div class="login_form_wrp">
-
                             <div class="login_header">
                                 <h6>Already have an account?</h6>
                                 <h2>LOGIN</h2>
                             </div>
-
                             <span><?php echo $internal_error; ?></span><br/>
                             <!-- htmlspecialchars is used to protect against XSS attacks -->
                             <form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -62,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="submit" class="btn log_form_submit" value="Login to my account"/>
                                 </div>
                             </form>
-
                             <div class="login_footer clearfix">
                                 <div class="line">
                                     <h6>Don't have an account?</h6>
@@ -71,19 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <a href="register.php"><input type="submit" class="btn reg_btn"
                                                                   value="Sign up for free!"/></a>
                                 </div>
-
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </section>
     </main>
 
-
-<?php require_once('footer.php'); ?>
+<?php require_once 'footer.php'; ?>
