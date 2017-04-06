@@ -1,7 +1,6 @@
-<?php require_once('header.php'); ?>
 <?php
-
-require '../config/config.php';
+require_once '../config/config.php';
+require_once 'header.php';
 
 session_start();
 $username = $_SESSION["username"];
@@ -10,6 +9,14 @@ $email = $_SESSION["email"];
 $internal_error = $activation_code = $activation_code_error = "";
 
 $activation_code = $activation_code_error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (!isset($username)) {
+        // no session exists, redirect to register page
+        header("Location: register.php");
+        die();
+    }
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $activation_code = $_POST["activation_code"];
@@ -39,8 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $internal_error = "Error: " . $sql . " < br>" . mysqli_error($conn);
         }
     } else {
-        $activation_code_error = "* Activation code is invalid . Please check the activation code you entered . ";
+        $activation_code_error = "Activation code is invalid . Please check the activation code you entered.";
     }
+    mysqli_close($conn);
 }
 ?>
 
@@ -57,9 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="clearfix">
                                 <div class="left_content">
                                     <label>Activation code:</label>
-                                    <input type="text" name="activation_code" value="<?php echo htmlspecialchars($activation_code); ?>"
+                                    <input type="text" name="activation_code"
+                                           value="<?php echo htmlspecialchars($activation_code); ?>"
                                            autofocus="autofocus"/>
-                                    <span  style="color:#ce4f43; font-size: 11px;"><?php echo $activation_code_error; ?></span><br/>
+                                    <span style="color:#ce4f43; font-size: 11px;"><?php echo $activation_code_error; ?></span><br/>
                                 </div>
                                 <div class="right_content">
                                     <input type="submit" value=" Verify " class="verify_btn"/>
