@@ -82,17 +82,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" name="to" placeholder="To" value="<?php echo htmlspecialchars($to); ?>"/>
     <span><?php echo $to_error; ?></span><br/>
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     <input type="date" name="start_date" placeholder="Start Date" min="<?php echo date('Y-m-d'); ?>"
            value="<?php echo htmlspecialchars($start_date); ?>"/><br/>
     <input type="submit" value="Search"/>
 =======
+=======
+>>>>>>> f6601b6551c42442a93c322e2422e6174ee356e0
     <label>Start date :</label>
     <input type="date" name="start_date" min="<?php echo date('Y-m-d'); ?>"
            value="<?php echo htmlspecialchars($start_date); ?>"/>
     <span><?php echo $start_date_error; ?></span><br/>
     <input type="submit" value="Find"/>
+<<<<<<< HEAD
 >>>>>>> 33035c22e74369a46c60b496b5ef25b28e312240
+=======
+>>>>>>> f6601b6551c42442a93c322e2422e6174ee356e0
 </form>
 </body>
 </html>
