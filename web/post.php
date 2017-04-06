@@ -6,10 +6,10 @@
  * Time: 10:46 AM
  */
 
-require '../config/config.php';
-//require '../config/session.php';
+require_once '../config/config.php';
+require_once '../config/session.php';
 
-$internal_error = $departure_point = $departure_point_error = $arrival_point = $arrival_point_error = $frequency = $frequency_error = $recurring_error = $date_of_journey = $date_of_journey_error = $available_seats = $available_seats_error = $phone_number = $phone_number_error = $comments = "";
+$internal_error = $departure_point = $departure_point_error = $arrival_point = $arrival_point_error = $frequency = $frequency_error = $recurring_error = $date_of_journey = $date_of_journey_error = $available_seats = $available_seats_error = $phone_number = $phone_number_error = $comment = "";
 $execute = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,17 +29,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // validate frequency
-    if (!isset($_POST["frequency"])) {
+    $frequency = $_POST["frequency"];
+    if (!isset($frequency)) {
         $frequency_error = "Please select the frequency.";
         $execute = false;
-    } else if ($frequency = "recurring") {
+    } else if ($frequency == "recurring") {
         if (!(isset($_POST['monday']) || isset($_POST['tuesday']) || isset($_POST['wednesday']) || isset($_POST['thursday']) || isset($_POST['friday']) || isset($_POST['saturday']) || isset($_POST['sunday']))) {
             $recurring_error = "Please select at least one day of the week.";
             $execute = false;
+        } else {
+            $date_of_journey = (new DateTime('1970-01-01'))->format('Y-m-d');
         }
-    } else if ($frequency = "one_time") {
-        if ($_POST['date_of_journey'] < time()) {
-            $date_of_journey = "Please select a valid date.";
+    } else {
+        if (!isset($_POST['date_of_journey'])) {
+            $date_of_journey_error = "Please select a date of journey.";
+            $execute = false;
+        } else {
+            $date_of_journey = $_POST['date_of_journey'];
         }
     }
 
@@ -61,6 +67,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else if (!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phone_number)) {
         $phone_number_error = "Please enter a valid phone number. (0xx-xxxxxxx)";
         $execute = false;
+    }
+
+    // validate comment - comments are optional, add any validation here, if needed.
+    if (isset($_POST["comment"])) {
+        $comment = $_POST["comment"];
+    } else {
+        $comment = "";
+    }
+
+    /* then, if all inputs are valid */
+    if ($execute) {
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // assign values required for database operation
+        if (isset($_POST['monday'])) {
+            $monday = 1;
+        } else {
+            $monday = 0;
+        }
+        if (isset($_POST['tuesday'])) {
+            $tuesday = 1;
+        } else {
+            $tuesday = 0;
+        }
+        if (isset($_POST['wednesday'])) {
+            $wednesday = 1;
+        } else {
+            $wednesday = 0;
+        }
+        if (isset($_POST['thursday'])) {
+            $thursday = 1;
+        } else {
+            $thursday = 0;
+        }
+        if (isset($_POST['friday'])) {
+            $friday = 1;
+        } else {
+            $friday = 0;
+        }
+        if (isset($_POST['saturday'])) {
+            $saturday = 1;
+        } else {
+            $saturday = 0;
+        }
+        if (isset($_POST['sunday'])) {
+            $sunday = 1;
+        } else {
+            $sunday = 0;
+        }
+
+        $sql = "INSERT INTO post (departure_point, arrival_point, frequency, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_of_journey, available_seats, phone_number, comment)
+VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday, '$date_of_journey', $available_seats, '$phone_number', '$comment')";
+        if (mysqli_query($conn, $sql)) {
+            // redirect to home page
+            header("Location: home.php");
+            die();
+        } else {
+            $internal_error = "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+
+        mysqli_close($conn);
     }
 }
 ?>
@@ -94,9 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="checkbox" name="saturday" value="saturday">Saturday
     <input type="checkbox" name="sunday" value="sunday">Sunday
     <span><?php echo $recurring_error; ?></span><br/>
-    <input type="radio" name="frequency" value="one_time" <?php if ($frequency == "one_time") {
-        echo " checked";
-    }; ?>/>One time<br/>
+    <input type="radio" name="frequency" value="one_time"/>One time<br/>
     <label>Date of journey:</label>
     <input type="date" name="date_of_journey" min="<?php echo date('Y-m-d'); ?>"
            value="<?php echo htmlspecialchars($date_of_journey); ?>"/>
@@ -108,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" name="phone_number" value="<?php echo htmlspecialchars($phone_number); ?>"/>
     <span><?php echo $phone_number_error; ?></span><br/>
     <label>Comments:</label>
-    <input type="text" name="comments" value="<?php echo htmlspecialchars($comments); ?>"/><br/>
+    <input type="text" name="comment" value="<?php echo htmlspecialchars($comment); ?>"/><br/>
     <input type="submit" value=" Post "/>
 </form>
 </body>
