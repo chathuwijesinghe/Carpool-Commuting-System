@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (($results_recurring->num_rows == 0) && ($results_one_time->num_rows == 0)) {
                 // no rides available
                 echo "<div class=\"alert alert-danger\" role=\"alert\">";
-                echo "<strong>Oh Sorry!</strong> No rides available. Come back later...:)";
+                echo "<strong>Oh Sorry!</strong> No rides available. Come back later...)";
                 echo "</div>";
             } else {
                 echo "<div><h3>Available Rides</h3><hr></div><div class=\"panel-group available_rides_panel\"><div class=\"panel panel-default\">";
