@@ -5,7 +5,6 @@
  * Date: 4/5/17
  * Time: 17:52
  */
-
 $internal_error = $from = $from_error = $to = $to_error = "";
 ?>
 <?php
@@ -99,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                    min="<?php echo date('Y-m-d'); ?>"
                                    value="<?php echo htmlspecialchars($start_date); ?>"/><br/>
                         </div>
+                        <span><?php echo $start_date_error; ?></span><br/>
                         <div class="search_btn">
                             <button type="submit" value="Search"><i class="fa fa-search" aria-hidden="true"></i> SEARCH
                             </button>
@@ -151,8 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<label>Available Seat(s):</label><span> " . $row["available_seats"] . "</span><br>";
                     echo "<label>Phone number:</label><span> " . $row["phone_number"] . "</span><br>";
                     echo "<label>Comment:</label><span> " . $row["comment"] . "</span></br>";
-                    echo "<img src = \"post_images/" . $row["image"] . ">";
-                    echo $filename;
+                    echo "<img src=\"../post_images/" . $row["image"] . "\" style=\"height: 100px; width: 100px\">";
                 }
                 echo "</div></div></div>";
             }
@@ -166,8 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<label>Available Seat(s):</label><span> " . $row["available_seats"] . "</span><br>";
                     echo "<label>Phone number:</label><span> " . $row["phone_number"] . "</span><br>";
                     echo "<label>Comment:</label><span> " . $row["comment"] . "</span></br>";
-                    echo "<img src = \"post_images/" . $row["image"] . "><hr>";
-                    echo $filename;
+                    echo "<img src=\"../post_images/" . $row["image"] . "\" style=\"height: 100px; width: 100px\">";
                 }
                 echo "</div></div></div>";
             } ?>
