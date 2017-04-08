@@ -5,8 +5,8 @@
  * Date: 4/2/17
  * Time: 10:46 AM
  */
-require '../config/config.php';
-require '../config/session.php';
+require_once '../config/config.php';
+require_once '../config/session.php';
 require_once 'header.php';
 require_once 'header_navbar.php';
 

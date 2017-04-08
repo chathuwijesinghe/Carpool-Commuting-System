@@ -24,7 +24,8 @@ if (isset($_SESSION["username"])) {
                 <ul class="nav navbar-nav navbar-right links">
                     <!-- if the user is logged in -->
                     <?php if (isset($username)) {
-                        echo "<li><a href=\"offer_ride.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i>Offer a Ride</a></li>";
+                        echo "<li><a href=\"offer_ride.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i>Offer a ride</a></li>";
+                        echo "<li><a href=\"my_posts.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i>My posts</a></li>";
                         echo "<li><a href=\"logout.php\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i>Logout</a></li>";
                     } ?>
 
