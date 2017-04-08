@@ -75,43 +75,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
+<section class="home_sec">
     <div class="container main_home_container">
         <div class="row">
             <div class="quote"> Rideshare from Anywhere to Everywhere</div>
         </div>
         <div class="row">
-           <div class="col-sm-6 left_form">
-               <div class="find_a_ride_wrp">
-                   <h3>Find a Ride</h3>
-                   <span><?php echo $internal_error; ?></span><br/>
-                   <!-- htmlspecialchars is used to protect against XSS attacks -->
-                   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                       <div class="input_wrp">
-                           <input type="text" placeholder="From" name="from" value="<?php echo htmlspecialchars($from); ?>"
-                                  autofocus="autofocus"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                       </div>
-                       <span><?php echo $from_error; ?></span><br/>
-                       <div class="input_wrp">
-                           <input type="text" name="to" placeholder="To" value="<?php echo htmlspecialchars($to); ?>"/><i
-                               class="fa fa-map-marker" aria-hidden="true"></i>
-                       </div>
-                       <span><?php echo $to_error; ?></span><br/>
-                       <div class="input_wrp">
-                           <input type="date" name="start_date" placeholder="Start Date" min="<?php echo date('Y-m-d'); ?>"
-                                  value="<?php echo htmlspecialchars($start_date); ?>"/><br/>
-                       </div>
-                       <div class="search_btn">
-                           <!--               <input type="submit" value="Search"/>-->
-                           <button type="submit" value="Search"><i class="fa fa-search" aria-hidden="true"></i> SEARCH</button>
-                       </div>
-                   </form>
-               </div>
-           </div>
+            <div class="col-sm-6 left_form">
+                <div class="find_a_ride_wrp">
+                    <h3>Find a Ride</h3>
+                    <span><?php echo $internal_error; ?></span><br/>
+                    <!-- htmlspecialchars is used to protect against XSS attacks -->
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <div class="input_wrp">
+                            <input type="text" placeholder="From" name="from" value="<?php echo htmlspecialchars($from); ?>"
+                                   autofocus="autofocus"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </div>
+                        <span><?php echo $from_error; ?></span><br/>
+                        <div class="input_wrp">
+                            <input type="text" name="to" placeholder="To" value="<?php echo htmlspecialchars($to); ?>"/><i
+                                class="fa fa-map-marker" aria-hidden="true"></i>
+                        </div>
+                        <span><?php echo $to_error; ?></span><br/>
+                        <div class="input_wrp">
+                            <input type="date" name="start_date" placeholder="Start Date" min="<?php echo date('Y-m-d'); ?>"
+                                   value="<?php echo htmlspecialchars($start_date); ?>"/><br/>
+                        </div>
+                        <div class="search_btn">
+                            <!--               <input type="submit" value="Search"/>-->
+                            <button type="submit" value="Search"><i class="fa fa-search" aria-hidden="true"></i> SEARCH</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
-<!--        <div class="quote"> Rideshare from Anywhere to Everywhere</div>-->
+        <!--        <div class="quote"> Rideshare from Anywhere to Everywhere</div>-->
     </div>
+</section>
+<section class="results_sec">
     <div class="container results_content">
         <div class="search_results">
             <div class="alert alert-danger" role="alert">
@@ -126,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="panel panel-default">
                     <div class="panel-heading">Colombo to Negambo</div>
                     <div class="panel-body">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8  ">
                             <p>I'm heading Yatalamatta to Galle. If anyone willing to join my ride, please contact me.</p>
                             <div class="col-sm-6">
                                 <label>Departure point:</label><span> Colombo</span><br>
@@ -152,6 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
     </div>
+</section>
+
 
 
 

@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
+<section class="offer_sec">
     <div class="container offer_ride">
         <div class="col-sm-5 left_img">
             <img src="../images/left_img.png" class="  img-responsive img-rounded">
@@ -107,17 +107,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="checkbox" name="sunday" value="sunday"> Sunday<br>
                                     <span><?php echo $recurring_error; ?></span><br/>
                                 </div>
-                                <input type="radio" name="frequency" value="one_time" <?php if ($frequency == "one_time") {
+                                <input type="radio" name="frequency" value="one_time" id="one_time" <?php if ($frequency == "one_time") {
                                     echo " checked";
                                 }; ?>/> One time<br/>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="input_wrp">
+                                <div class="input_wrp date_wrp">
                                     <label>Date of journey:</label><br>
                                     <input type="date" name="date_of_journey" min="<?php echo date('Y-m-d'); ?>"
                                            value="<?php echo htmlspecialchars($date_of_journey); ?>"/>
                                     <span><?php echo $date_of_journey_error; ?></span><br/>
                                 </div>
+                            </div>
+                            <div class="col-sm-6">
+
 
                                 <div class="input_wrp">
                                     <label>Available Seat(s):</label><br>
@@ -158,5 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
 
-    </div>
+    </div>  
+</section>
+  
 <?php require_once('footer.php'); ?>

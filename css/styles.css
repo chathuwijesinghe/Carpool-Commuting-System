@@ -349,12 +349,7 @@
 
 
 /*------------------ Main Home page ------------------*/
-.home{
-    /*background: #cccccc;*/
-    background: url("../images/home-bg.jpg") center no-repeat;
-    height: 100vh;
-    background-size: cover;
-}
+
 
 .navbar-inverse{
     font-family: Roboto-Light;
@@ -595,16 +590,12 @@
 }
 
 /*------------------ home page------------------*/
-.main_home_container{
-    background: url("../images/home-bg.png") no-repeat ;
-    /*background-size: cover;*/
-    min-height: 600px;
-    width: 100%;
-    /*background-position: inherit;*/
-    background-repeat: no-repeat;
-    /*background-size: cover;*/
-    /*position: relative;*/
-    /*position: fixed;*/
+.home_sec{
+    background: url("../images/home-bg.png") no-repeat top center;
+    background-size: cover;
+}
+.alert{
+    margin-top: 50px;
 }
 .main_home_container .left_form .find_a_ride_wrp    {
    margin: 60px auto;
@@ -663,8 +654,7 @@
     padding-top: 50px;
     padding-left: 20px;
 }
-
-.offer_ride{
+.offer_sec{
     background: #f3f1f1;
     width: 100%;
     font-family: Roboto-Regular;
@@ -673,7 +663,7 @@
 .offer_ride .left_img{
     margin-top: 100px;
     text-align: center;
-    padding-left: 60px;
+    /*padding-left: 60px;*/
 }
 .offer_ride .right_form .panel-heading{
     font-family: Roboto-Regular;
@@ -708,6 +698,9 @@
     margin-left: 30px;
     display: none;
 }
+.offer_ride .date_wrp{
+    display: none;
+}
 .offer_ride .post_btn button{
     width: 50%;
     border-radius: 4px;
@@ -721,8 +714,8 @@
 
 }
 
-.results_content{
-    width: 100%;
+.results_sec{
+    /*width: 100%;*/
     background-color: #eae6e6;
     font-family: Roboto-Regular;
 }
@@ -734,7 +727,7 @@
     font-size: 30px;
 }
 .results_content .available_rides_panel{
-    width: 75%;
+    /*width: 75%;*/
 }
 .results_content button{
     float: right;
@@ -910,11 +903,21 @@
         float: left;
         width: 57%;
     }
+    .page_header .logo span {
+
+        font-size: 29px;
+      padding-top: 0px;
+    }
 }
 @media (max-width: 375px) {
     .verify_box .left_content {
         float: left;
         width: 63%;
+    }
+    .main_home_container .quote {
+
+        font-size: 29px;
+
     }
 }
 
@@ -930,6 +933,12 @@
     .verify_box .left_content {
         float: left;
         width: 77%;
+    }
+    .find_a_ride_wrp {
+        width: 290px;
+    }
+    .main_home_container .left_form .find_a_ride_wrp {
+        margin: 0px auto;
     }
 }
 
