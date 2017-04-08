@@ -147,11 +147,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($row["sunday"] == 1) {
                         echo "<span>Sunday    </span>";
                     }
-                    echo "</<br>";
+                    echo "<br>";
                     echo "<label>Available Seat(s):</label><span> " . $row["available_seats"] . "</span><br>";
                     echo "<label>Phone number:</label><span> " . $row["phone_number"] . "</span><br>";
                     echo "<label>Comment:</label><span> " . $row["comment"] . "</span></br>";
-                    echo "<img src=\"../post_images/" . $row["image"] . "\" style=\"height: 100px; width: 100px\">";
+                    if (isset($row["image"])) {
+                        echo "<img src=\"../post_images/" . $row["image"] . "\" style=\"height: 100px; width: 100px\">";
+                    }
+                    echo "<hr>";
                 }
                 echo "</div></div></div>";
             }
@@ -165,7 +168,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<label>Available Seat(s):</label><span> " . $row["available_seats"] . "</span><br>";
                     echo "<label>Phone number:</label><span> " . $row["phone_number"] . "</span><br>";
                     echo "<label>Comment:</label><span> " . $row["comment"] . "</span></br>";
-                    echo "<img src=\"../post_images/" . $row["image"] . "\" style=\"height: 100px; width: 100px\">";
+                    if (isset($row["image"])) {
+                        echo "<img src=\"../post_images/" . $row["image"] . "\" style=\"height: 100px; width: 100px\">";
+                    }
+                    echo "<hr>";
                 }
                 echo "</div></div></div>";
             } ?>
