@@ -150,7 +150,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "</<br>";
                     echo "<label>Available Seat(s):</label><span> " . $row["available_seats"] . "</span><br>";
                     echo "<label>Phone number:</label><span> " . $row["phone_number"] . "</span><br>";
-                    echo "<label>Comment:</label><span> " . $row["comment"] . "</span><hr>";
+                    echo "<label>Comment:</label><span> " . $row["comment"] . "</span></br>";
+                    echo "<img src = \"post_images/" . $row["image"] . ">";
+                    echo $filename;
                 }
                 echo "</div></div></div>";
             }
@@ -163,7 +165,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<label>Date of journey:</label><span> " . $row["date_of_journey"] . "</span><br>";
                     echo "<label>Available Seat(s):</label><span> " . $row["available_seats"] . "</span><br>";
                     echo "<label>Phone number:</label><span> " . $row["phone_number"] . "</span><br>";
-                    echo "<label>Comment:</label><span> " . $row["comment"] . "</span><hr>";
+                    echo "<label>Comment:</label><span> " . $row["comment"] . "</span></br>";
+                    echo "<img src = \"post_images/" . $row["image"] . "><hr>";
+                    echo $filename;
                 }
                 echo "</div></div></div>";
             } ?>

@@ -123,15 +123,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // get the username
         $username = $_SESSION["username"];
 
-        $img_file = $_FILES['image']['name'];
-        $tmp_dir = $_FILES['image']['tmp_name'];
-        $upload_dir = 'C:/xampp/htdocs/carpool_commuting_system/post_images/';
-        $img_ext = strtolower(pathinfo($img_file, PATHINFO_EXTENSION));
-        $filename = rand(1000, 1000000) . "." . $img_ext;
-        move_uploaded_file($tmp_dir, $upload_dir . $filename);
+        // check if file is uploaded or not
+        if (!isset($_FILES['image']) || $_FILES['image']['error'] == UPLOAD_ERR_NO_FILE) {
+            $sql = "INSERT INTO post (departure_point, arrival_point, frequency, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_of_journey, available_seats, phone_number, comment, username)
+VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday, '$date_of_journey', $available_seats, '$phone_number', '$comment', '$username')";
+        } else {
+            $img_file = $_FILES['image']['name'];
+            $tmp_dir = $_FILES['image']['tmp_name'];
+            $upload_dir = 'C:/xampp/htdocs/carpool_commuting_system/post_images/';
+            $img_ext = strtolower(pathinfo($img_file, PATHINFO_EXTENSION));
+            $filename = rand(1000, 1000000) . "." . $img_ext;
+            move_uploaded_file($tmp_dir, $upload_dir . $filename);
 
-        $sql = "INSERT INTO post (departure_point, arrival_point, frequency, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_of_journey, available_seats, phone_number, comment, username, image)
+            $sql = "INSERT INTO post (departure_point, arrival_point, frequency, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_of_journey, available_seats, phone_number, comment, username, image)
 VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday, '$date_of_journey', $available_seats, '$phone_number', '$comment', '$username', '$filename')";
+        }
+
         if (mysqli_query($conn, $sql)) {
             // redirect to home page
             header("Location: home.php");
