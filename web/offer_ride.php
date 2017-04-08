@@ -123,8 +123,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // get the username
         $username = $_SESSION["username"];
 
-        $sql = "INSERT INTO post (departure_point, arrival_point, frequency, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_of_journey, available_seats, phone_number, comment, username)
-VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday, '$date_of_journey', $available_seats, '$phone_number', '$comment', '$username')";
+        $img_file = $_FILES['image']['name'];
+        $tmp_dir = $_FILES['image']['tmp_name'];
+        $upload_dir = 'C:/xampp/htdocs/carpool_commuting_system/post_images/';
+        $img_ext = strtolower(pathinfo($img_file, PATHINFO_EXTENSION));
+        $filename = rand(1000, 1000000) . "." . $img_ext;
+        move_uploaded_file($tmp_dir, $upload_dir . $filename);
+
+        $sql = "INSERT INTO post (departure_point, arrival_point, frequency, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_of_journey, available_seats, phone_number, comment, username, image)
+VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday, '$date_of_journey', $available_seats, '$phone_number', '$comment', '$username', '$filename')";
         if (mysqli_query($conn, $sql)) {
             // redirect to home page
             header("Location: home.php");
@@ -157,7 +164,8 @@ VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $
                     <div class="panel-body">
                         <span><?php echo $internal_error; ?></span><br/>
                         <!-- htmlspecialchars is used to protect against XSS attacks -->
-                        <form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <form action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+                              enctype="multipart/form-data">
                             <div class="col-sm-6">
                                 <div class="input_wrp">
                                     <label>Departure point:</label><br>
@@ -209,7 +217,8 @@ VALUES ('$departure_point', '$arrival_point', '$frequency', $monday, $tuesday, $
                                 <label>Comments:</label><br>
                                 <textarea style="width: 100%;" rows="7" name="comments"
                                           value="<?php echo htmlspecialchars($comments); ?>"></textarea>
-
+                                <label>Image:</label>
+                                <input type="file" name="image" accept="image/*"/>
                             </div>
                             <div class="input_wrp post_btn">
                                 <button type="submit" value=" Post ">POST</button>
